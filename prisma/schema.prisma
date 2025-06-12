@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  TEACHER
+  ADMIN
+}
+
+enum Subject {
+  DEV
+  UX
+  PO
+  RESEARCH
+  PORTFOLIO
+  MISC
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String
+  password  String
+  role      Role       @default(TEACHER)
+  workshops Workshop[]
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Workshop {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  subject     Subject
+  date        String   // Store as YYYY-MM-DD string for simplicity
+  teacherId   String   @map("teacher_id")
+  teacher     User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@index([date])
+  @@index([subject])
+  @@index([teacherId])
+  @@map("workshops")
+}

@@ -1,0 +1,35 @@
+{
+  "name": "workshop-planner",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed",
+    "db:studio": "prisma studio"
+  },
+  "dependencies": {
+    "nuxt": "^3.17.5",
+    "vue": "^3.5.16",
+    "vue-router": "^4.5.1",
+    "@nuxtjs/color-mode": "^3.5.1",
+    "@pinia/nuxt": "^0.5.5",
+    "pinia": "^2.3.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "@prisma/client": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.7",
+    "prisma": "^6.1.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
+  }
+}
