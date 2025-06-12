@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "~/stores/auth";
+import { useAuthStore } from "~/store/auth";
 const { $colorMode } = useNuxtApp();
 
 const authStore = useAuthStore();
