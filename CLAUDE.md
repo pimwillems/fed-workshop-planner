@@ -71,9 +71,7 @@ The app uses CSS custom properties for consistent theming:
 - **Responsive**: Mobile-first approach with flexible layouts
 
 ### Authentication
-- **Demo Accounts**: 
-  - Admin: admin@workshop.com / admin123
-  - Teacher: teacher@workshop.com / admin123
+- **Demo Accounts**: Pre-seeded test accounts available for development
 - **JWT Tokens**: 7-day expiry, stored in HTTP-only cookies
 - **Role-based Access**: Teachers can create/edit/delete their own workshops, admins can manage all
 
@@ -156,6 +154,6 @@ The app is deployed on Render with PostgreSQL database. It's also compatible wit
 - Calendar navigation allows browsing different months
 
 **Authentication:**
-- Demo accounts are seeded automatically
+- Test accounts are seeded automatically for development
 - JWT tokens expire after 7 days
 - Logout properly redirects to homepage with page refresh

@@ -79,13 +79,6 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 6. **Open your browser**
    Navigate to `http://localhost:3000`
 
-## 🧪 Demo Accounts
-
-The application comes with pre-seeded demo accounts:
-
-- **Admin**: `admin@workshop.com` / `admin123`
-- **Teacher**: `teacher@workshop.com` / `admin123`
-
 ## 🏗️ Technology Stack
 
 ### Frontend
