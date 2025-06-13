@@ -10,9 +10,13 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 - **Teacher Authentication**: Simple JWT-based auth for teachers to manage workshops
 - **Workshop Management**: Full CRUD operations for workshops with subject categorization
 - **Public Schedule**: Anyone can view the workshop planning without authentication
+- **Dual View System**: Toggle between workshop tiles and calendar view with advanced filtering
 - **Subject Categories**: Dev, UX, Professional Skills (PO), Research, Portfolio, Misc (predefined by admin)
 - **Day-based Planning**: Workshops are planned by day only (no specific hours)
 - **Dark/Light Mode**: Toggle with easy-on-eyes pastel color scheme
+- **WCAG AA Accessibility**: Compliant color contrast and keyboard navigation
+- **Loading States**: Professional loading animations and user feedback
+- **PWA Ready**: Favicon and manifest support for progressive web app capabilities
 - **Responsive Design**: Works on all devices
 
 ## Development Commands
@@ -24,6 +28,13 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 - `npm run lint:fix` - Fix ESLint issues
+- `npm run start` - Start production server
+
+## Database Commands
+
+- `npm run db:push` - Push schema to database
+- `npm run db:seed` - Seed with demo data
+- `npm run db:studio` - Open Prisma Studio
 
 ## Architecture
 
@@ -33,7 +44,8 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 - **Styling**: Custom CSS with CSS variables for theming
 - **Authentication**: JWT tokens with bcryptjs for password hashing
 - **Database**: PostgreSQL with Prisma ORM
-- **Hosting**: Supabase (PostgreSQL)
+- **Hosting**: Render (PostgreSQL + Node.js hosting)
+- **PWA**: Manifest and favicon support for app-like experience
 
 ### Project Structure
 ```
@@ -50,10 +62,12 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 └── utils/              # Utility functions
 ```
 
-### Color System
+### Color System & Accessibility
 The app uses CSS custom properties for consistent theming:
+- **WCAG AA Compliance**: All colors meet 4.5:1+ contrast ratio requirements
 - **Subjects**: Each subject has unique pastel colors (Dev=blue, UX=purple, PO=green, etc.)
 - **Themes**: Light and dark mode with automatic system preference detection
+- **Loading States**: Professional spinner animations with proper contrast
 - **Responsive**: Mobile-first approach with flexible layouts
 
 ### Authentication
@@ -74,7 +88,7 @@ The app uses CSS custom properties for consistent theming:
 
 ### Database Setup
 
-The app uses PostgreSQL with Prisma ORM connected to Supabase:
+The app uses PostgreSQL with Prisma ORM connected to Render:
 
 ```bash
 # Database commands
@@ -90,26 +104,58 @@ npm run db:studio      # Open Prisma Studio
 
 **Environment Variables:**
 ```env
-DATABASE_URL="postgresql://postgres:password@db.supabase.co:5432/postgres?sslmode=require"
+DATABASE_URL="postgresql://username:password@host:5432/database?sslmode=require"
+DIRECT_URL="postgresql://username:password@host:5432/database?sslmode=require"
 JWT_SECRET="your-secret-key"
 ```
+
+**Note**: For Render deployment, use internal URL for `DATABASE_URL` and external URL for `DIRECT_URL`.
 
 ## Development Notes
 
 - **Options API**: The project uses Vue's Options API as requested
 - **Database**: Uses PostgreSQL with Prisma ORM and automatic type generation
-- **Pastel Colors**: Easy-on-eyes color palette with proper contrast ratios
+- **WCAG AA Colors**: All colors meet accessibility standards with 4.5:1+ contrast ratios
+- **Dual Views**: Implemented tile and calendar views with persistent user preference
+- **Loading States**: Added professional loading animations for better UX
+- **PWA Features**: Favicon and manifest support for app-like experience
 - **Teacher Focus**: UI optimized for teacher workflow while keeping public view clean
 - **Day Planning**: Workshops are date-based only, giving teachers flexibility during their day
 
 ## Deployment
 
-The app is ready for deployment on Vercel, Netlify, or any Node.js hosting platform. The database is already configured with Supabase for production use.
+The app is deployed on Render with PostgreSQL database. It's also compatible with Vercel, Netlify, or any Node.js hosting platform.
+
+### Render Deployment (Current)
+- **Database**: Render PostgreSQL with automatic schema creation
+- **Server**: Node.js hosting with automatic deploys from GitHub
+- **Environment**: Production-ready with proper SSL and scaling
+
+### Build Process
+- Automatic database schema creation via postinstall hook
+- Production build optimization
+- Static asset generation and caching
 
 ## Troubleshooting
 
 **Database Connection Issues:**
-1. Check if Supabase project is active (not paused)
+1. Check if Render PostgreSQL service is active
 2. Verify connection string format includes `?sslmode=require`
-3. Ensure database server is accessible from your network
+3. Ensure you're using internal URL for `DATABASE_URL` and external for `DIRECT_URL`
 4. Try `npm run db:push` to test connection
+5. Check Render logs for deployment issues
+
+**Common Issues:**
+- **Missing start script**: Ensure `package.json` has `"start": "node .output/server/index.mjs"`
+- **Schema not created**: Database schema is automatically created via postinstall hook
+- **Environment variables**: Double-check all required env vars are set in Render dashboard
+
+**View System:**
+- Toggle between tile and calendar views using the view switcher
+- Filters work in both views and persist across view changes
+- Calendar navigation allows browsing different months
+
+**Authentication:**
+- Demo accounts are seeded automatically
+- JWT tokens expire after 7 days
+- Logout properly redirects to homepage with page refresh

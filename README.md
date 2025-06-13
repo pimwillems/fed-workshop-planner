@@ -16,15 +16,17 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 - Rich text descriptions and metadata
 
 ### 📅 **Dual View Modes**
-- **Workshop Tiles**: Card-based layout with detailed information
-- **Calendar View**: Monthly calendar with interactive workshop blocks
-- Easy toggle between viewing preferences
+- **Workshop Tiles**: Card-based layout with detailed information and subject color coding
+- **Calendar View**: Monthly calendar with interactive workshop blocks and navigation
+- Easy toggle between viewing preferences with persistent state
+- Advanced filtering by subject and date in both views
 
 ### 🎨 **Modern UI/UX**
 - **WCAG AA compliant** color scheme for accessibility
 - Dark/light mode with system preference detection
 - Responsive design for all devices
-- Smooth animations and hover effects
+- Smooth animations and loading states
+- Professional favicon and PWA manifest support
 
 ### 🔍 **Advanced Filtering**
 - Filter by subject category
@@ -36,7 +38,7 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 
 ### Prerequisites
 - Node.js 18+ 
-- PostgreSQL database (Neon recommended)
+- PostgreSQL database (Render recommended for deployment)
 
 ### Installation
 
@@ -100,7 +102,7 @@ The application comes with pre-seeded demo accounts:
 
 ### Database
 - **PostgreSQL** - Primary database
-- **Neon** - Serverless PostgreSQL hosting
+- **Render PostgreSQL** - Cloud-hosted PostgreSQL database
 
 ## 📁 Project Structure
 
@@ -145,6 +147,7 @@ npm run dev          # Start development server
 npm run build        # Build for production
 npm run generate     # Generate static site
 npm run preview      # Preview production build
+npm run start        # Start production server
 npm run lint         # Run ESLint
 npm run lint:fix     # Fix ESLint issues
 
@@ -158,9 +161,11 @@ npm run db:studio    # Open Prisma Studio
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string (pooled) | Yes |
-| `DIRECT_URL` | PostgreSQL direct connection for migrations | Yes |
+| `DATABASE_URL` | PostgreSQL connection string (pooled/internal) | Yes |
+| `DIRECT_URL` | PostgreSQL direct connection for migrations (external) | Yes |
 | `JWT_SECRET` | Secret key for JWT token signing | Yes |
+
+**Note**: For Render deployment, use the internal URL for `DATABASE_URL` and external URL for `DIRECT_URL`.
 
 ## ♿ Accessibility
 
@@ -174,20 +179,26 @@ This application follows **WCAG AA guidelines**:
 
 ## 🚢 Deployment
 
-### Vercel (Recommended)
+### Render (Recommended for full-stack)
+1. Connect your repository to Render
+2. Create a PostgreSQL database on Render
+3. Set environment variables:
+   ```env
+   DATABASE_URL=<render-postgres-internal-url>
+   DIRECT_URL=<render-postgres-external-url>
+   JWT_SECRET=<your-secret>
+   ```
+4. Deploy automatically on git push
+5. Database schema will be created automatically via postinstall hook
+
+### Vercel (Static/Serverless)
 1. Connect your repository to Vercel
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on git push
 
-### Netlify
-1. Connect repository to Netlify
-2. Set build command: `npm run generate`
-3. Set environment variables
-4. Deploy
-
 ### Self-Hosted
 1. Build the application: `npm run build`
-2. Start with: `npm run preview`
+2. Start with: `npm run start` (production server)
 3. Use PM2 or similar for production
 
 ## 🔒 Security Features
