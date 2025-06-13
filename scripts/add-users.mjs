@@ -6,8 +6,8 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('Adding new user accounts...')
 
-  // Default password for all new accounts
-  const defaultPassword = 'teacher123' // Users should change this on first login
+  // Get password from environment variable for security
+  const defaultPassword = process.env.DEFAULT_USER_PASSWORD || 'changeme123'
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
   // Teacher accounts
@@ -63,7 +63,7 @@ async function main() {
     }
   }
 
-  console.log('\\n📧 All accounts created with default password: "teacher123"')
+  console.log('\\n📧 All accounts created with default password from environment variable')
   console.log('⚠️  Users should change their password on first login!')
 }
 

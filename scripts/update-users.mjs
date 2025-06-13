@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('Updating user accounts with correct details...')
 
-  const defaultPassword = 'teacher123'
+  const defaultPassword = process.env.DEFAULT_USER_PASSWORD || 'changeme123'
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
   // User updates mapping old email to new details
@@ -93,7 +93,7 @@ async function main() {
   }
 
   console.log('\\n📧 All accounts updated with correct details!')
-  console.log('🔑 Default password remains: "teacher123"')
+  console.log('🔑 Password set from environment variable')
 }
 
 main()
