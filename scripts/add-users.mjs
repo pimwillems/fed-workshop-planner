@@ -7,7 +7,12 @@ async function main() {
   console.log('Adding new user accounts...')
 
   // Get password from environment variable for security
-  const defaultPassword = process.env.DEFAULT_USER_PASSWORD || 'changeme123'
+  const defaultPassword = process.env.DEFAULT_USER_PASSWORD
+  if (!defaultPassword) {
+    console.error('❌ ERROR: DEFAULT_USER_PASSWORD environment variable is required!')
+    console.error('Usage: DEFAULT_USER_PASSWORD="your_password" node scripts/add-users.mjs')
+    process.exit(1)
+  }
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
   // Teacher accounts

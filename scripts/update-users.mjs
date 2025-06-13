@@ -6,7 +6,12 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('Updating user accounts with correct details...')
 
-  const defaultPassword = process.env.DEFAULT_USER_PASSWORD || 'changeme123'
+  const defaultPassword = process.env.DEFAULT_USER_PASSWORD
+  if (!defaultPassword) {
+    console.error('❌ ERROR: DEFAULT_USER_PASSWORD environment variable is required!')
+    console.error('Usage: DEFAULT_USER_PASSWORD="your_password" node scripts/update-users.mjs')
+    process.exit(1)
+  }
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
   // User updates mapping old email to new details
