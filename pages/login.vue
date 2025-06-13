@@ -42,10 +42,14 @@
         <button 
           type="submit" 
           class="btn btn-primary" 
-          style="width: 100%; margin-bottom: 1rem;"
+          style="width: 100%; margin-bottom: 1rem; position: relative;"
           :disabled="loading"
         >
-          {{ loading ? 'Please wait...' : 'Sign In' }}
+          <span v-if="!loading">Sign In</span>
+          <span v-else style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <div class="spinner"></div>
+            Signing in...
+          </span>
         </button>
       </form>
 

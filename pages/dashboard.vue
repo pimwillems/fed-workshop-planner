@@ -92,8 +92,12 @@
             <button type="button" @click="closeModal" class="btn">
               Cancel
             </button>
-            <button type="submit" class="btn btn-primary" :disabled="formLoading">
-              {{ formLoading ? 'Saving...' : (editingWorkshop ? 'Update' : 'Create') }}
+            <button type="submit" class="btn btn-primary" :disabled="formLoading" style="position: relative;">
+              <span v-if="!formLoading">{{ editingWorkshop ? 'Update' : 'Create' }}</span>
+              <span v-else style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                <div class="spinner"></div>
+                {{ editingWorkshop ? 'Updating...' : 'Creating...' }}
+              </span>
             </button>
           </div>
         </form>
@@ -147,11 +151,12 @@
             </button>
             <button 
               @click="handleDelete(workshop.id)"
-              style="background: none; border: none; color: var(--color-portfolio-dark); cursor: pointer; padding: 0.25rem;"
+              style="background: none; border: none; color: var(--color-portfolio-dark); cursor: pointer; padding: 0.25rem; display: flex; align-items: center; gap: 0.25rem;"
               title="Delete workshop"
               :disabled="deleteLoading === workshop.id"
             >
-              {{ deleteLoading === workshop.id ? '⏳' : '🗑️' }}
+              <div v-if="deleteLoading === workshop.id" class="spinner" style="width: 12px; height: 12px; border-width: 1px; border-color: var(--color-portfolio-dark); border-top-color: transparent;"></div>
+              <span v-else>🗑️</span>
             </button>
           </div>
         </div>
