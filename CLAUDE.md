@@ -72,7 +72,7 @@ The app uses CSS custom properties for consistent theming:
 - **Responsive**: Mobile-first approach with flexible layouts
 
 ### Authentication
-- **Demo Accounts**: Pre-seeded test accounts available for development
+- **Test Accounts**: Basic admin/teacher accounts seeded for development (no demo workshops)
 - **JWT Tokens**: 7-day expiry, stored in HTTP-only cookies
 - **Role-based Access**: Teachers can create/edit/delete their own workshops, admins can manage all
 
@@ -101,6 +101,11 @@ npm run db:studio      # Open Prisma Studio
 - **Users**: Teacher accounts with JWT authentication
 - **Workshops**: Subject-categorized workshops with date-based planning
 - **Relationships**: One-to-many (User → Workshops)
+
+**Seeding Policy:**
+- Only basic admin/teacher test accounts are seeded
+- No demo workshop data is created in production
+- Clean deployment with empty workshop database
 
 **Environment Variables:**
 ```env
@@ -170,7 +175,7 @@ The app is deployed on Render with PostgreSQL database. It's also compatible wit
 - Calendar navigation allows browsing different months
 
 **Authentication:**
-- Test accounts are seeded automatically for development
+- Basic test accounts seeded for development (no demo workshops)
 - JWT tokens expire after 7 days
 - Logout properly redirects to homepage with page refresh
 - Change password functionality available at `/change-password` (requires login)

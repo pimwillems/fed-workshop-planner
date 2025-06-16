@@ -43,67 +43,7 @@ async function main() {
 
   console.log('Created users:', { adminUser: adminUser.email, teacherUser: teacherUser.email })
 
-  // Create workshops
-  const workshops = [
-    {
-      title: 'Vue.js Fundamentals',
-      description: 'Learn the basics of Vue.js framework, including components, directives, and reactivity.',
-      subject: 'DEV',
-      date: '2025-06-10',
-      teacherId: teacherUser.id
-    },
-    {
-      title: 'User Research Methods',
-      description: 'Explore different user research techniques including interviews, surveys, and usability testing.',
-      subject: 'RESEARCH',
-      date: '2025-06-12',
-      teacherId: adminUser.id
-    },
-    {
-      title: 'Design Systems Workshop',
-      description: 'Building consistent and scalable design systems for modern applications.',
-      subject: 'UX',
-      date: '2025-06-15',
-      teacherId: teacherUser.id
-    },
-    {
-      title: 'Professional Skills Essentials',
-      description: 'Develop key professional skills including communication, time management, and career development.',
-      subject: 'PO',
-      date: '2025-06-18',
-      teacherId: adminUser.id
-    },
-    {
-      title: 'Portfolio Presentation Skills',
-      description: 'Master the art of presenting your work effectively to stakeholders and clients.',
-      subject: 'PORTFOLIO',
-      date: '2025-06-20',
-      teacherId: teacherUser.id
-    },
-    {
-      title: 'Agile Workshop Facilitation',
-      description: 'Best practices for running effective workshops and collaborative sessions.',
-      subject: 'MISC',
-      date: '2025-06-22',
-      teacherId: adminUser.id
-    }
-  ]
-
-  for (const workshop of workshops) {
-    await prisma.workshop.upsert({
-      where: { 
-        // Create a unique constraint based on title and date
-        id: `seed-${workshop.title.toLowerCase().replace(/\s+/g, '-')}`
-      },
-      update: {},
-      create: {
-        ...workshop,
-        id: `seed-${workshop.title.toLowerCase().replace(/\s+/g, '-')}`
-      }
-    })
-  }
-
-  console.log('Created workshops:', workshops.length)
+  // No demo workshops created - production deployment uses clean data
   console.log('Database seed completed successfully!')
 }
 
