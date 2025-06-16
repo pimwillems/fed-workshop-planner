@@ -9,6 +9,7 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 ### Key Features
 - **Teacher Authentication**: Simple JWT-based auth for teachers to manage workshops
 - **Workshop Management**: Full CRUD operations for workshops with subject categorization
+- **Password Management**: Change password functionality for all logged-in users
 - **Public Schedule**: Anyone can view the workshop planning without authentication
 - **Dual View System**: Toggle between workshop tiles and calendar view with advanced filtering
 - **Subject Categories**: Dev, UX, Professional Skills (PO), Research, Portfolio, Misc (predefined by admin)
@@ -53,7 +54,7 @@ This is a full-featured workshop management system built with Nuxt 3, using the 
 ├── components/           # Vue components (currently using layouts/pages)
 ├── layouts/             # Nuxt layouts (default.vue)
 ├── middleware/          # Route middleware (auth.ts)
-├── pages/               # Route pages (index.vue, login.vue, dashboard.vue)
+├── pages/               # Route pages (index.vue, login.vue, dashboard.vue, change-password.vue)
 ├── server/api/          # API endpoints
 │   ├── auth/           # Authentication endpoints
 │   └── workshops/      # Workshop CRUD endpoints
@@ -78,6 +79,7 @@ The app uses CSS custom properties for consistent theming:
 ### API Endpoints
 - `POST /api/auth/login` - Login with email/password
 - `POST /api/auth/register` - Register new teacher account
+- `POST /api/auth/change-password` - Change user password (auth required)
 - `GET /api/auth/me` - Get current user info
 - `GET /api/workshops` - List all workshops (public)
 - `POST /api/workshops` - Create workshop (auth required)
@@ -108,6 +110,20 @@ JWT_SECRET="your-secret-key"
 ```
 
 **Note**: For Render deployment, use internal URL for `DATABASE_URL` and external URL for `DIRECT_URL`.
+
+## Database Management
+
+**IMPORTANT**: Database changes (adding users, modifying data) require manual SQL execution. When users need to be added or database changes are required:
+
+1. **Generate SQL**: Claude Code will provide the exact SQL statements needed
+2. **Manual Execution**: The user must run these SQL statements directly in their database (via Render dashboard, pgAdmin, or database client)
+3. **No Automatic Schema Changes**: Schema migrations use Prisma, but data changes require manual SQL execution
+
+**Example Workflow:**
+- User requests new accounts to be added
+- Claude generates SQL INSERT statements with bcrypt-hashed passwords
+- User copies and executes the SQL in their database management tool
+- Changes take effect immediately on the live application
 
 ## Development Notes
 
@@ -157,3 +173,10 @@ The app is deployed on Render with PostgreSQL database. It's also compatible wit
 - Test accounts are seeded automatically for development
 - JWT tokens expire after 7 days
 - Logout properly redirects to homepage with page refresh
+- Change password functionality available at `/change-password` (requires login)
+
+**Password Management:**
+- Users can change their password via the dashboard "Change Password" button
+- Requires current password verification for security
+- New passwords must be at least 6 characters long
+- Success message shown and redirects to dashboard after password change

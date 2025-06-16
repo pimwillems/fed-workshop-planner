@@ -1,9 +1,14 @@
 <template>
   <div class="container" style="padding: 2rem 1rem;">
     <div style="margin-bottom: 3rem;">
-      <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
-        Teacher Dashboard
-      </h1>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 1rem;">
+        <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin: 0;">
+          Teacher Dashboard
+        </h1>
+        <NuxtLink to="/change-password" class="btn btn-secondary" style="font-size: 0.875rem;">
+          Change Password
+        </NuxtLink>
+      </div>
       <p style="color: var(--text-secondary);">
         Welcome back, {{ authStore.user?.name }}! Manage your workshops here.
       </p>
