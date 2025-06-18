@@ -77,6 +77,17 @@
   --error-text: #f8d7da;
 }
 
+/* Dark mode navigation active state */
+.dark-mode .nav-link.active {
+  color: var(--color-dev-dark);
+  background: var(--color-dev);
+  border-color: var(--color-dev-dark);
+}
+
+.dark-mode .nav-link.active::after {
+  background: var(--color-dev-dark);
+}
+
 /* Base styles */
 * {
   margin: 0;
@@ -266,12 +277,34 @@ body {
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
   color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.nav-link.active {
+  color: var(--color-dev-dark);
+  background: var(--color-dev);
+  font-weight: 600;
+  border: 1px solid var(--color-dev-dark);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: var(--color-dev-dark);
+  border-radius: 1px;
 }
 
 /* Grid layouts */
