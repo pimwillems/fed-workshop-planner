@@ -3,23 +3,23 @@
     <div style="margin-bottom: 3rem;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 1rem;">
         <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin: 0;">
-          Teacher Dashboard
+          FED Teacher Dashboard
         </h1>
         <NuxtLink to="/change-password" class="btn btn-secondary" style="font-size: 0.875rem;">
           Change Password
         </NuxtLink>
       </div>
       <p style="color: var(--text-secondary);">
-        Welcome back, {{ authStore.user?.name }}! Manage your workshops here.
+        Welcome back, {{ authStore.user?.name }}! Manage your FED workshops here.
       </p>
     </div>
 
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
       <h2 style="font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0;">
-        My Workshops
+        My FED Workshops
       </h2>
       <button @click="showCreateForm = true" class="btn btn-primary">
-        + Create Workshop
+        + Create FED Workshop
       </button>
     </div>
 
@@ -32,7 +32,7 @@
       <div class="card" style="max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
           <h3 style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 0;">
-            {{ editingWorkshop ? 'Edit Workshop' : 'Create New Workshop' }}
+            {{ editingWorkshop ? 'Edit FED Workshop' : 'Create New FED Workshop' }}
           </h3>
           <button @click="closeModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">
             ×
@@ -47,7 +47,7 @@
               type="text" 
               class="form-input" 
               required
-              placeholder="Workshop title"
+              placeholder="FED Workshop title"
             />
           </div>
 
@@ -58,7 +58,7 @@
               class="form-input" 
               rows="4"
               required
-              placeholder="Describe what this workshop covers..."
+              placeholder="Describe what this FED workshop covers..."
               style="resize: vertical; min-height: 100px;"
             ></textarea>
           </div>
@@ -115,10 +115,10 @@
 
     <div v-else-if="myWorkshops.length === 0" style="text-align: center; padding: 3rem;">
       <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1.5rem;">
-        You haven't created any workshops yet.
+        You haven't created any FED workshops yet.
       </p>
       <button @click="showCreateForm = true" class="btn btn-primary">
-        Create Your First Workshop
+        Create Your First FED Workshop
       </button>
     </div>
 
@@ -331,7 +331,7 @@ onMounted(async () => {
 
 // SEO
 useSeoMeta({
-  title: 'Dashboard | Workshop Planner',
-  description: 'Manage your workshops, create new sessions, and track your teaching schedule.'
+  title: 'Dashboard | FED Learning Hub',
+  description: 'Manage your FED workshops, create new learning sessions, and track your teaching schedule.'
 })
 </script>

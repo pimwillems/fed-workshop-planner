@@ -3,10 +3,10 @@
     <div class="card">
       <div style="text-align: center; margin-bottom: 2rem;">
         <h1 style="font-size: 1.875rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">
-          Teacher Login
+          FED Teacher Login
         </h1>
         <p style="color: var(--text-secondary);">
-          Sign in to manage your workshops
+          Sign in to manage your FED workshops
         </p>
       </div>
 
@@ -166,7 +166,7 @@ onMounted(() => {
 
 // SEO
 useSeoMeta({
-  title: 'Login | Workshop Planner',
-  description: 'Sign in to your teacher account to manage workshops and create new learning sessions.'
+  title: 'Login | FED Learning Hub',
+  description: 'Sign in to your teacher account to manage FED workshops and create new learning sessions.'
 })
 </script>

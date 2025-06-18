@@ -2,7 +2,7 @@
   <div>
     <nav class="nav">
       <div class="container nav-content">
-        <NuxtLink to="/" class="nav-brand"> Workshop Planner </NuxtLink>
+        <NuxtLink to="/" class="nav-brand"> FED Learning Hub </NuxtLink>
 
         <ul class="nav-links">
           <li>

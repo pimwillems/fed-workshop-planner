@@ -2,10 +2,10 @@
   <div class="container" style="padding: 2rem 1rem;">
     <div style="text-align: center; margin-bottom: 3rem;">
       <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">
-        Workshop Schedule
+        FED Workshop Schedule
       </h1>
       <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-        Browse upcoming workshops across different subjects. All workshops are planned by day to give teachers flexibility during their teaching time.
+        Browse upcoming FED workshops across different subjects. All workshops are planned by day to give teachers flexibility during their teaching time.
       </p>
     </div>
 
@@ -345,7 +345,7 @@ onMounted(async () => {
 
 // SEO
 useSeoMeta({
-  title: 'Workshop Schedule | Workshop Planner',
-  description: 'Browse upcoming workshops across different subjects including Development, UX Design, Product Owner, Research, and Portfolio.'
+  title: 'FED Workshop Schedule | FED Learning Hub',
+  description: 'Browse upcoming FED workshops across different subjects including Development, UX Design, Product Owner, Research, and Portfolio.'
 })
 </script>
