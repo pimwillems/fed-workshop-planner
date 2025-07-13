@@ -88,7 +88,7 @@ The app uses CSS custom properties for consistent theming:
 
 ### Database Setup
 
-The app uses PostgreSQL with Prisma ORM connected to Render:
+The app uses PostgreSQL with Prisma ORM connected to Coolify on Hetzner VPS:
 
 ```bash
 # Database commands
@@ -109,12 +109,12 @@ npm run db:studio      # Open Prisma Studio
 
 **Environment Variables:**
 ```env
-DATABASE_URL="postgresql://username:password@host:5432/database?sslmode=require"
-DIRECT_URL="postgresql://username:password@host:5432/database?sslmode=require"
+DATABASE_URL="postgresql://username:password@postgresql:5432/database"
+DIRECT_URL="postgresql://username:password@postgresql:5432/database"
 JWT_SECRET="your-secret-key"
 ```
 
-**Note**: For Render deployment, use internal URL for `DATABASE_URL` and external URL for `DIRECT_URL`.
+**Note**: For Coolify deployment, both URLs typically use the same internal connection string since app and database are on the same infrastructure.
 
 ## Database Management
 
@@ -124,11 +124,18 @@ JWT_SECRET="your-secret-key"
 2. **Manual Execution**: The user must run these SQL statements directly in their database (via Render dashboard, pgAdmin, or database client)
 3. **No Automatic Schema Changes**: Schema migrations use Prisma, but data changes require manual SQL execution
 
-**Example Workflow:**
+**Example Workflow for Coolify:**
 - User requests new accounts to be added
 - Claude generates SQL INSERT statements with bcrypt-hashed passwords
-- User copies and executes the SQL in their database management tool
+- User executes SQL via app container: `node_modules/.bin/prisma db execute --schema prisma/schema.prisma --stdin`
+- Paste SQL and press Ctrl+D to execute
 - Changes take effect immediately on the live application
+
+**Generating Password Hashes:**
+```bash
+# In the app container terminal
+node -e "const bcrypt = require('bcryptjs'); console.log(bcrypt.hashSync('password123', 12));"
+```
 
 ## Development Notes
 
@@ -143,12 +150,25 @@ JWT_SECRET="your-secret-key"
 
 ## Deployment
 
-The app is deployed on Render with PostgreSQL database. It's also compatible with Vercel, Netlify, or any Node.js hosting platform.
+The app is deployed on Coolify with Hetzner VPS and PostgreSQL database. It's also compatible with Render, Vercel, Netlify, or any Node.js hosting platform.
 
-### Render Deployment (Current)
-- **Database**: Render PostgreSQL with automatic schema creation
+### Coolify Deployment (Current)
+- **Infrastructure**: Hetzner VPS with Coolify self-hosted PaaS
+- **Database**: PostgreSQL container managed by Coolify
 - **Server**: Node.js hosting with automatic deploys from GitHub
-- **Environment**: Production-ready with proper SSL and scaling
+- **Environment**: Production-ready with proper SSL and internal networking
+
+### Coolify Setup Steps
+1. Create PostgreSQL database service in Coolify
+2. Create Node.js application and connect to Git repository
+3. Set environment variables in Coolify dashboard:
+   ```env
+   DATABASE_URL=postgresql://username:password@postgresql:5432/database
+   DIRECT_URL=postgresql://username:password@postgresql:5432/database
+   JWT_SECRET=your-secret-key
+   ```
+4. Deploy application - schema will be created automatically via postinstall hook
+5. Add production users via app container terminal
 
 ### Build Process
 - Automatic database schema creation via postinstall hook
@@ -158,16 +178,18 @@ The app is deployed on Render with PostgreSQL database. It's also compatible wit
 ## Troubleshooting
 
 **Database Connection Issues:**
-1. Check if Render PostgreSQL service is active
-2. Verify connection string format includes `?sslmode=require`
-3. Ensure you're using internal URL for `DATABASE_URL` and external for `DIRECT_URL`
-4. Try `npm run db:push` to test connection
-5. Check Render logs for deployment issues
+1. Check if Coolify PostgreSQL service is running
+2. Verify connection string format matches internal Coolify networking
+3. Ensure both `DATABASE_URL` and `DIRECT_URL` use the same internal connection
+4. Try `npm run db:push` to test connection from app container
+5. Check Coolify logs for deployment issues
+6. Verify environment variables are set correctly in Coolify dashboard
 
 **Common Issues:**
 - **Missing start script**: Ensure `package.json` has `"start": "node .output/server/index.mjs"`
 - **Schema not created**: Database schema is automatically created via postinstall hook
-- **Environment variables**: Double-check all required env vars are set in Render dashboard
+- **Environment variables**: Double-check all required env vars are set in Coolify dashboard
+- **User login issues**: Verify password hashes are generated correctly using bcryptjs in app container
 
 **View System:**
 - Toggle between tile and calendar views using the view switcher

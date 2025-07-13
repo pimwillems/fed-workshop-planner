@@ -38,7 +38,7 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 
 ### Prerequisites
 - Node.js 18+ 
-- PostgreSQL database (Render recommended for deployment)
+- PostgreSQL database (Coolify on Hetzner VPS for production deployment)
 
 ### Installation
 
@@ -95,7 +95,7 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 
 ### Database
 - **PostgreSQL** - Primary database
-- **Render PostgreSQL** - Cloud-hosted PostgreSQL database
+- **Coolify PostgreSQL** - Self-hosted PostgreSQL on Hetzner VPS
 
 ## 📁 Project Structure
 
@@ -154,11 +154,11 @@ npm run db:studio    # Open Prisma Studio
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string (pooled/internal) | Yes |
-| `DIRECT_URL` | PostgreSQL direct connection for migrations (external) | Yes |
+| `DATABASE_URL` | PostgreSQL connection string (internal networking) | Yes |
+| `DIRECT_URL` | PostgreSQL direct connection for migrations (same as DATABASE_URL for Coolify) | Yes |
 | `JWT_SECRET` | Secret key for JWT token signing | Yes |
 
-**Note**: For Render deployment, use the internal URL for `DATABASE_URL` and external URL for `DIRECT_URL`.
+**Note**: For Coolify deployment, both URLs typically use the same internal connection string since app and database are on the same infrastructure.
 
 ## ♿ Accessibility
 
@@ -172,27 +172,37 @@ This application follows **WCAG AA guidelines**:
 
 ## 🚢 Deployment
 
-### Render (Recommended for full-stack)
-1. Connect your repository to Render
-2. Create a PostgreSQL database on Render
-3. Set environment variables:
+### Coolify on Hetzner VPS (Recommended for full-stack)
+1. Set up Coolify on your Hetzner VPS
+2. Create a PostgreSQL database service in Coolify
+3. Create a Node.js application and connect to your Git repository
+4. Set environment variables in Coolify dashboard:
    ```env
-   DATABASE_URL=<render-postgres-internal-url>
-   DIRECT_URL=<render-postgres-external-url>
+   DATABASE_URL=postgresql://username:password@postgresql:5432/database
+   DIRECT_URL=postgresql://username:password@postgresql:5432/database
    JWT_SECRET=<your-secret>
    ```
-4. Deploy automatically on git push
-5. Database schema will be created automatically via postinstall hook
+5. Deploy automatically on git push
+6. Database schema will be created automatically via postinstall hook
+7. Add production users via app container terminal
 
-### Vercel (Static/Serverless)
+### Alternative Deployments
+
+#### Render
+1. Connect your repository to Render
+2. Create a PostgreSQL database on Render
+3. Set environment variables with internal/external URLs
+4. Deploy automatically on git push
+
+#### Vercel (Static/Serverless)
 1. Connect your repository to Vercel
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on git push
 
-### Self-Hosted
+#### Self-Hosted VPS
 1. Build the application: `npm run build`
 2. Start with: `npm run start` (production server)
-3. Use PM2 or similar for production
+3. Use PM2 or similar for production process management
 
 ## 🔒 Security Features
 

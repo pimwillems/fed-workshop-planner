@@ -15,19 +15,19 @@ async function main() {
   }
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
-  // Teacher accounts
+  // Teacher accounts - UPDATE THESE WITH YOUR ACTUAL USERS
   const teachers = [
-    { email: 'pvujicic@howest.be', name: 'Petar Vujicic' },
-    { email: 'gsegers@howest.be', name: 'Gilles Segers' },
-    { email: 'aeyck@howest.be', name: 'Arne Eyck' },
-    { email: 'svanoers@howest.be', name: 'Stijn Van Oers' },
-    { email: 'lderkx@howest.be', name: 'Lennert Derkx' }
+    { email: 'm.putman@fontys.nl', name: 'Maikel Putman' },
+    { email: 's.vanoers@fontys.nl', name: 'Stan van Oers' },
+    { email: 'g.segers@fontys.nl', name: 'Guido Segers' },
+    { email: 'a.eyck@fontys.nl', name: 'Anke Eyck' },
+    { email: 'l.derkx@fontys.nl', name: 'Luuk Derkx' }
   ]
 
-  // Admin accounts
+  // Admin accounts - UPDATE THESE WITH YOUR ACTUAL ADMINS
   const admins = [
-    { email: 'pwillems@howest.be', name: 'Pim Willems' },
-    { email: 'dschol@howest.be', name: 'Dries Schol' }
+    { email: 'p.willems@fontys.nl', name: 'Pim Willems' },
+    { email: 'd.schol@fontys.nl', name: 'David Schol' }
   ]
 
   console.log('Creating teacher accounts...')

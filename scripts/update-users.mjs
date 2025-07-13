@@ -14,50 +14,20 @@ async function main() {
   }
   const hashedPassword = await bcrypt.hash(defaultPassword, 12)
 
-  // User updates mapping old email to new details
+  // User updates mapping old email to new details - UPDATE WITH YOUR ACTUAL USERS
   const userUpdates = [
-    // Teachers
+    // Teachers - Example entries, update with your actual users
     {
-      oldEmail: 'pvujicic@howest.be',
-      newEmail: 'petra.vujicic@fontys.nl',
-      name: 'Petra Vujicic',
+      oldEmail: 'old.email@domain.com',
+      newEmail: 'new.email@fontys.nl',
+      name: 'Teacher Name',
       role: 'TEACHER'
     },
+    // Admins - Example entries, update with your actual admins
     {
-      oldEmail: 'svanoers@howest.be', 
-      newEmail: 's.vanoers@fontys.nl',
-      name: 'Stan van Oers',
-      role: 'TEACHER'
-    },
-    {
-      oldEmail: 'gsegers@howest.be',
-      newEmail: 'g.segers@fontys.nl', 
-      name: 'Guido Segers',
-      role: 'TEACHER'
-    },
-    {
-      oldEmail: 'aeyck@howest.be',
-      newEmail: 'a.eyck@fontys.nl',
-      name: 'Anke Eyck', 
-      role: 'TEACHER'
-    },
-    {
-      oldEmail: 'lderkx@howest.be',
-      newEmail: 'l.derkx@fontys.nl',
-      name: 'Luuk Derkx',
-      role: 'TEACHER'
-    },
-    // Admins
-    {
-      oldEmail: 'dschol@howest.be',
-      newEmail: 'd.schol@fontys.nl',
-      name: 'David Schol',
-      role: 'ADMIN'
-    },
-    {
-      oldEmail: 'pwillems@howest.be', 
-      newEmail: 'p.willems@fontys.nl',
-      name: 'Pim Willems',
+      oldEmail: 'old.admin@domain.com',
+      newEmail: 'new.admin@fontys.nl',
+      name: 'Admin Name',
       role: 'ADMIN'
     }
   ]
