@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import type { CreateWorkshopData } from '~/types'
 import { prisma, transformWorkshop, transformSubjectToDb } from '~/utils/db'
+import { validateString, validateSubject, validateDate } from '~/utils/validation'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
@@ -39,29 +40,36 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody<CreateWorkshopData>(event)
     
-    // Validate required fields
-    if (!body.title || !body.description || !body.subject || !body.date) {
+    // Validate input fields
+    const titleValidation = validateString(body.title, 'Title', 1, 200)
+    if (!titleValidation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Title, description, subject, and date are required'
+        statusMessage: titleValidation.message
       })
     }
 
-    // Validate subject
-    const validSubjects = ['Dev', 'UX', 'PO', 'Research', 'Portfolio', 'Misc']
-    if (!validSubjects.includes(body.subject)) {
+    const descriptionValidation = validateString(body.description, 'Description', 1, 1000)
+    if (!descriptionValidation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Invalid subject'
+        statusMessage: descriptionValidation.message
       })
     }
 
-    // Validate date format (YYYY-MM-DD)
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
-    if (!dateRegex.test(body.date)) {
+    const subjectValidation = validateSubject(body.subject)
+    if (!subjectValidation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Date must be in YYYY-MM-DD format'
+        statusMessage: subjectValidation.message
+      })
+    }
+
+    const dateValidation = validateDate(body.date)
+    if (!dateValidation.valid) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: dateValidation.message
       })
     }
 

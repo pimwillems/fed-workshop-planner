@@ -90,8 +90,6 @@ export const useWorkshopsStore = defineStore('workshops', {
           token = tokenCookie.value
         }
         
-        console.log('Creating workshop with token:', token ? 'Token exists' : 'No token')
-        
         if (!token) {
           throw new Error('No authentication token available')
         }

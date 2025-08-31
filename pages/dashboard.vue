@@ -167,11 +167,11 @@
         </div>
 
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">
-          {{ workshop.title }}
+          {{ sanitizeText(workshop.title) }}
         </h3>
 
         <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-          {{ workshop.description }}
+          {{ sanitizeText(workshop.description) }}
         </p>
 
         <div style="color: var(--text-muted); font-size: 0.875rem;">
@@ -186,6 +186,7 @@
 import type { Subject, Workshop, CreateWorkshopData } from '~/types'
 import { useAuthStore } from '~/store/auth'
 import { useWorkshopsStore } from '~/store/workshops'
+import { sanitizeText } from '~/utils/sanitization'
 
 definePageMeta({
   middleware: 'auth'

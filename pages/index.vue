@@ -119,16 +119,16 @@
             </div>
 
             <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary);">
-              {{ workshop.title }}
+              {{ sanitizeText(workshop.title) }}
             </h3>
 
             <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-              {{ workshop.description }}
+              {{ sanitizeText(workshop.description) }}
             </p>
 
             <div style="display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.875rem;">
               <span>
-                👨‍🏫 {{ workshop.teacher.name }}
+                👨‍🏫 {{ sanitizeText(workshop.teacher.name) }}
               </span>
             </div>
           </div>
@@ -193,9 +193,9 @@
                     lineHeight: '1.2',
                     cursor: 'pointer'
                   }"
-                  :title="`${workshop.title} by ${workshop.teacher.name}`"
+                  :title="`${sanitizeText(workshop.title)} by ${sanitizeText(workshop.teacher.name)}`"
                 >
-                  {{ workshop.title }}
+                  {{ sanitizeText(workshop.title) }}
                 </div>
               </div>
             </div>
@@ -209,6 +209,7 @@
 <script setup lang="ts">
 import type { Subject } from '~/types'
 import { useWorkshopsStore } from '~/store/workshops'
+import { sanitizeText } from '~/utils/sanitization'
 
 const workshopsStore = useWorkshopsStore()
 

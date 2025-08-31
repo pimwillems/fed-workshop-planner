@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import type { UpdateWorkshopData } from '~/types'
 import { prisma, transformWorkshop, transformSubjectToDb } from '~/utils/db'
+import { validateString, validateSubject, validateDate } from '~/utils/validation'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
@@ -72,24 +73,46 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody<Partial<UpdateWorkshopData>>(event)
     
-    // Validate subject if provided
-    if (body.subject) {
-      const validSubjects = ['Dev', 'UX', 'PO', 'Research', 'Portfolio', 'Misc']
-      if (!validSubjects.includes(body.subject)) {
+    // Validate title if provided
+    if (body.title !== undefined) {
+      const titleValidation = validateString(body.title, 'Title', 1, 200)
+      if (!titleValidation.valid) {
         throw createError({
           statusCode: 400,
-          statusMessage: 'Invalid subject'
+          statusMessage: titleValidation.message
         })
       }
     }
 
-    // Validate date format if provided
-    if (body.date) {
-      const dateRegex = /^\d{4}-\d{2}-\d{2}$/
-      if (!dateRegex.test(body.date)) {
+    // Validate description if provided
+    if (body.description !== undefined) {
+      const descriptionValidation = validateString(body.description, 'Description', 1, 1000)
+      if (!descriptionValidation.valid) {
         throw createError({
           statusCode: 400,
-          statusMessage: 'Date must be in YYYY-MM-DD format'
+          statusMessage: descriptionValidation.message
+        })
+      }
+    }
+
+    // Validate subject if provided
+    if (body.subject) {
+      const subjectValidation = validateSubject(body.subject)
+      if (!subjectValidation.valid) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: subjectValidation.message
+        })
+      }
+    }
+
+    // Validate date if provided
+    if (body.date) {
+      const dateValidation = validateDate(body.date)
+      if (!dateValidation.valid) {
+        throw createError({
+          statusCode: 400,
+          statusMessage: dateValidation.message
         })
       }
     }

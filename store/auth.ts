@@ -31,9 +31,9 @@ export const useAuthStore = defineStore('auth', {
 
         // Store token in cookie for persistence
         const tokenCookie = useCookie('auth-token', {
-          httpOnly: false,
+          httpOnly: true,
           secure: true,
-          sameSite: 'lax',
+          sameSite: 'strict',
           maxAge: 60 * 60 * 24 * 7 // 7 days
         })
         tokenCookie.value = data.token
@@ -61,7 +61,12 @@ export const useAuthStore = defineStore('auth', {
         this.isAuthenticated = true
 
         // Store token in cookie for persistence
-        const tokenCookie = useCookie('auth-token')
+        const tokenCookie = useCookie('auth-token', {
+          httpOnly: true,
+          secure: true,
+          sameSite: 'strict',
+          maxAge: 60 * 60 * 24 * 7 // 7 days
+        })
         tokenCookie.value = data.token
 
         await navigateTo('/dashboard')

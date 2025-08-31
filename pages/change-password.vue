@@ -25,10 +25,10 @@
               v-model="newPassword"
               type="password"
               required
-              minlength="6"
+              minlength="8"
               :disabled="isLoading"
               class="form-input"
-              placeholder="Enter your new password (min 6 characters)"
+              placeholder="Enter your new password (min 8 characters with uppercase, lowercase, and number)"
             />
           </div>
 
@@ -88,7 +88,8 @@ export default {
              this.newPassword && 
              this.confirmPassword && 
              this.newPassword === this.confirmPassword &&
-             this.newPassword.length >= 6
+             this.newPassword.length >= 8 &&
+             /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(this.newPassword)
     }
   },
   methods: {

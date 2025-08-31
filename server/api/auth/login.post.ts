@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import type { LoginCredentials } from '~/types'
 import { prisma, transformUser } from '~/utils/db'
+import { validateEmail } from '~/utils/validation'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
@@ -9,10 +10,19 @@ export default defineEventHandler(async (event) => {
   try {
     const body = await readBody<LoginCredentials>(event)
     
-    if (!body.email || !body.password) {
+    // Validate email format
+    const emailValidation = validateEmail(body.email)
+    if (!emailValidation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Email and password are required'
+        statusMessage: emailValidation.message
+      })
+    }
+
+    if (!body.password) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Password is required'
       })
     }
 

@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { prisma } from '~/utils/db'
+import { validatePassword } from '~/utils/validation'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
@@ -9,17 +10,18 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const { currentPassword, newPassword } = body
     
-    if (!currentPassword || !newPassword) {
+    if (!currentPassword) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Current password and new password are required'
+        statusMessage: 'Current password is required'
       })
     }
 
-    if (newPassword.length < 6) {
+    const passwordValidation = validatePassword(newPassword)
+    if (!passwordValidation.valid) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'New password must be at least 6 characters long'
+        statusMessage: passwordValidation.message
       })
     }
 

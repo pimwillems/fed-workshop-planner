@@ -32,11 +32,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const userRole = authStore.user?.role
   const isTeacherOrAdmin = userRole === 'teacher' || userRole === 'admin'
   
-  console.log('User object:', authStore.user)
-  console.log('User role:', userRole)
-  console.log('isTeacherOrAdmin:', isTeacherOrAdmin)
-  console.log('authStore.isTeacher getter:', authStore.isTeacher)
-  
   if (!isTeacherOrAdmin) {
     throw createError({
       statusCode: 403,

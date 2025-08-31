@@ -123,7 +123,6 @@ const handleSubmit = async () => {
     })
 
     // Update store manually with reactive assignment
-    console.log('Login response user:', data.user)
     authStore.$patch({
       user: data.user,
       token: data.token,
@@ -132,21 +131,15 @@ const handleSubmit = async () => {
 
     // Store token in cookie
     const tokenCookie = useCookie('auth-token', {
-      httpOnly: false,
-      secure: false,
-      sameSite: 'lax',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
       maxAge: 60 * 60 * 24 * 7 // 7 days
     })
     tokenCookie.value = data.token
 
     // Wait a tick for store to update
     await nextTick()
-    
-    console.log('Store after login:', {
-      user: authStore.user,
-      isAuthenticated: authStore.isAuthenticated,
-      isTeacher: authStore.isTeacher
-    })
 
     await navigateTo('/dashboard')
   } catch (err: any) {

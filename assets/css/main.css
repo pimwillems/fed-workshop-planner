@@ -426,3 +426,49 @@ body {
 .slide-leave-to {
   transform: translateX(100%);
 }
+
+/* Beta Warning Banner */
+.beta-warning {
+  background: var(--warning);
+  border-bottom: 1px solid var(--color-research-dark);
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.beta-warning-text {
+  color: var(--warning-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.beta-warning-link {
+  color: var(--color-research-dark);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.beta-warning-link:hover {
+  color: var(--color-research-text);
+}
+
+.beta-warning-link:focus {
+  outline: 2px solid var(--color-research-dark);
+  outline-offset: 2px;
+}
+
+/* Dark mode beta warning */
+.dark-mode .beta-warning {
+  background: var(--color-research);
+}
+
+.dark-mode .beta-warning-text {
+  color: var(--color-research-text);
+}
+
+.dark-mode .beta-warning-link {
+  color: var(--color-research-dark);
+}
+
+.dark-mode .beta-warning-link:hover {
+  color: var(--color-research-text);
+}

@@ -43,6 +43,16 @@
       </div>
     </nav>
 
+    <!-- Beta Warning Banner -->
+    <div class="beta-warning">
+      <div class="container">
+        <span class="beta-warning-text">
+          ⚠️ This is a beta release. Bugs can be reported as issues on the 
+          <a href="https://github.com/anthropics/claude-code/issues" target="_blank" rel="noopener noreferrer" class="beta-warning-link">Github page</a>.
+        </span>
+      </div>
+    </div>
+
     <main>
       <slot />
     </main>

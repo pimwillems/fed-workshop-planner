@@ -15,36 +15,8 @@ async function main() {
     throw error
   }
 
-  // Hash passwords
-  const hashedPassword = await bcrypt.hash('admin123', 12)
-
-  // Create users
-  const adminUser = await prisma.user.upsert({
-    where: { email: 'admin@workshop.com' },
-    update: {},
-    create: {
-      email: 'admin@workshop.com',
-      name: 'Admin User',
-      password: hashedPassword,
-      role: 'ADMIN'
-    }
-  })
-
-  const teacherUser = await prisma.user.upsert({
-    where: { email: 'teacher@workshop.com' },
-    update: {},
-    create: {
-      email: 'teacher@workshop.com',
-      name: 'John Teacher',
-      password: hashedPassword,
-      role: 'TEACHER'
-    }
-  })
-
-  console.log('Created users:', { adminUser: adminUser.email, teacherUser: teacherUser.email })
-
-  // No demo workshops created - production deployment uses clean data
-  console.log('Database seed completed successfully!')
+  // No demo accounts or workshops created - production deployment uses clean data
+  console.log('Database seed completed successfully - no demo data created!')
 }
 
 main()
