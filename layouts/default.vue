@@ -48,7 +48,7 @@
       <div class="container">
         <span class="beta-warning-text">
           ⚠️ This is a beta release. Bugs can be reported as issues on the 
-          <a href="https://github.com/anthropics/claude-code/issues" target="_blank" rel="noopener noreferrer" class="beta-warning-link">Github page</a>.
+          <a href="https://github.com/pimwillems/fed-workshop-planner/issues" target="_blank" rel="noopener noreferrer" class="beta-warning-link">Github page</a>.
         </span>
       </div>
     </div>

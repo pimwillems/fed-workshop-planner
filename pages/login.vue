@@ -53,27 +53,6 @@
         </button>
       </form>
 
-      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-        <p style="font-size: 0.875rem; color: var(--text-muted); text-align: center; margin-bottom: 1rem;">
-          Demo Accounts:
-        </p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button 
-            @click="fillDemoCredentials('admin')"
-            class="btn"
-            style="flex: 1; font-size: 0.75rem;"
-          >
-            Admin Demo
-          </button>
-          <button 
-            @click="fillDemoCredentials('teacher')"
-            class="btn"
-            style="flex: 1; font-size: 0.75rem;"
-          >
-            Teacher Demo
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -94,17 +73,6 @@ const form = reactive({
   email: '',
   password: ''
 })
-
-const fillDemoCredentials = (type: 'admin' | 'teacher') => {
-  if (type === 'admin') {
-    form.email = 'admin@workshop.com'
-    form.password = 'admin123'
-  } else {
-    form.email = 'teacher@workshop.com'
-    form.password = 'admin123'
-  }
-  error.value = ''
-}
 
 const handleSubmit = async () => {
   if (loading.value) return
