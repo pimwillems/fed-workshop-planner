@@ -95,7 +95,7 @@
             :class="`subject-${workshop.subject.toLowerCase()}`"
           >
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-              <div>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
                 <span 
                   class="subject-badge"
                   :style="{
@@ -111,6 +111,21 @@
                   }"
                 >
                   {{ workshop.subject }}
+                </span>
+                <span 
+                  v-if="getWorkshopWeekTag(new Date(workshop.date))"
+                  :style="{
+                    display: 'inline-block',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '0.375rem',
+                    fontSize: '0.7rem',
+                    fontWeight: '500',
+                    backgroundColor: 'var(--bg-secondary)',
+                    color: 'var(--text-secondary)',
+                    border: '1px solid var(--border-color)'
+                  }"
+                >
+                  {{ getWorkshopWeekTag(new Date(workshop.date)) }}
                 </span>
               </div>
               <div style="text-align: right; color: var(--text-muted); font-size: 0.875rem; font-weight: 600;">
@@ -175,9 +190,28 @@
                 opacity: day.isCurrentMonth ? 1 : 0.5
               }"
             >
-              <!-- Day number -->
-              <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; font-size: 0.875rem;">
-                {{ day.dayNumber }}
+              <!-- Day number and lesson week info -->
+              <div style="margin-bottom: 0.5rem;">
+                <div style="font-weight: 600; color: var(--text-primary); font-size: 0.875rem;">
+                  {{ day.dayNumber }}
+                </div>
+                <div v-if="day.lessonWeekInfo.displayText" style="font-size: 0.7rem; color: var(--text-muted); font-weight: 500;">
+                  {{ day.lessonWeekInfo.displayText }}
+                </div>
+                <div v-if="!day.lessonWeekInfo.isTeaching" 
+                     :style="{
+                       fontSize: '0.65rem',
+                       fontWeight: '600',
+                       color: day.lessonWeekInfo.status === 'holiday' ? '#dc2626' : '#ea580c',
+                       backgroundColor: day.lessonWeekInfo.status === 'holiday' ? '#fef2f2' : '#fff7ed',
+                       padding: '0.125rem 0.25rem',
+                       borderRadius: '0.25rem',
+                       marginTop: '0.25rem',
+                       textTransform: 'uppercase',
+                       letterSpacing: '0.025em'
+                     }">
+                  Geen aanbod
+                </div>
               </div>
 
               <!-- Workshops for this day -->
@@ -210,6 +244,7 @@
 import type { Subject } from '~/types'
 import { useWorkshopsStore } from '~/store/workshops'
 import { sanitizeText } from '~/utils/sanitization'
+import { getLessonWeekInfo, getWorkshopWeekTag } from '~/utils/lessonWeeks'
 
 const workshopsStore = useWorkshopsStore()
 
@@ -245,11 +280,13 @@ const calendarDays = computed(() => {
   const prevMonth = new Date(year, month - 1, 0)
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
     const date = new Date(year, month - 1, prevMonth.getDate() - i)
+    const lessonWeekInfo = getLessonWeekInfo(date)
     days.push({
       date: date.toISOString().split('T')[0],
       dayNumber: date.getDate(),
       isCurrentMonth: false,
-      workshops: []
+      workshops: [],
+      lessonWeekInfo
     })
   }
   
@@ -258,12 +295,14 @@ const calendarDays = computed(() => {
     const date = new Date(year, month, day)
     const dateString = date.toISOString().split('T')[0]
     const dayWorkshops = filteredWorkshops.value.filter(w => w.date === dateString)
+    const lessonWeekInfo = getLessonWeekInfo(date)
     
     days.push({
       date: dateString,
       dayNumber: day,
       isCurrentMonth: true,
-      workshops: dayWorkshops
+      workshops: dayWorkshops,
+      lessonWeekInfo
     })
   }
   
@@ -271,11 +310,13 @@ const calendarDays = computed(() => {
   const remainingDays = 42 - days.length
   for (let day = 1; day <= remainingDays; day++) {
     const date = new Date(year, month + 1, day)
+    const lessonWeekInfo = getLessonWeekInfo(date)
     days.push({
       date: date.toISOString().split('T')[0],
       dayNumber: day,
       isCurrentMonth: false,
-      workshops: []
+      workshops: [],
+      lessonWeekInfo
     })
   }
   

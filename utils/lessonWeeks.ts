@@ -1,0 +1,356 @@
+// Lesson week mapping for Fontys ICT academic year 2025-2026
+// Based on the official academic calendar
+
+export interface LessonWeekInfo {
+  week: number | null;
+  semester: 'fall' | 'spring' | null;
+  isTeaching: boolean;
+  status: 'teaching' | 'geen-aanbod' | 'studiedag' | 'holiday';
+  displayText: string;
+}
+
+// Date format: YYYY-MM-DD
+const lessonWeekMappings: Record<string, LessonWeekInfo> = {
+  // September 2025 - Fall Semester
+  '2025-09-01': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' }, // S1
+  '2025-09-02': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2025-09-03': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2025-09-04': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2025-09-05': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2025-09-08': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2025-09-09': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2025-09-10': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2025-09-11': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2025-09-12': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2025-09-15': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2025-09-16': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2025-09-17': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2025-09-18': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2025-09-19': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2025-09-22': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2025-09-23': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2025-09-24': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2025-09-25': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2025-09-26': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2025-09-29': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2025-09-30': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+
+  // October 2025
+  '2025-10-01': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2025-10-02': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2025-10-03': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2025-10-06': { week: 6, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2025-10-07': { week: 6, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2025-10-08': { week: 6, semester: 'fall', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2025-10-09': { week: 6, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2025-10-10': { week: 6, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2025-10-13': { week: 7, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2025-10-14': { week: 7, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2025-10-15': { week: 7, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2025-10-16': { week: 7, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2025-10-17': { week: 7, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2025-10-20': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-21': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-22': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-23': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-24': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-27': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-10-28': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-29': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-30': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2025-10-31': { week: 8, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+
+  // November 2025 - Continue fall semester
+  '2025-11-03': { week: 9, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2025-11-04': { week: 9, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2025-11-05': { week: 9, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2025-11-06': { week: 9, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2025-11-07': { week: 9, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2025-11-10': { week: 10, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2025-11-11': { week: 10, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2025-11-12': { week: 10, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2025-11-13': { week: 10, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2025-11-14': { week: 10, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2025-11-17': { week: 11, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2025-11-18': { week: 11, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2025-11-19': { week: 11, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2025-11-20': { week: 11, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2025-11-21': { week: 11, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2025-11-24': { week: 12, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2025-11-25': { week: 12, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2025-11-26': { week: 12, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2025-11-27': { week: 12, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2025-11-28': { week: 12, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+
+  // December 2025 - Holiday period and continued teaching
+  '2025-12-01': { week: 13, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2025-12-02': { week: 13, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2025-12-03': { week: 13, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2025-12-04': { week: 13, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2025-12-05': { week: 13, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2025-12-08': { week: 14, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2025-12-09': { week: 14, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2025-12-10': { week: 14, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2025-12-11': { week: null, semester: null, isTeaching: false, status: 'studiedag', displayText: 'Geen aanbod' },
+  '2025-12-12': { week: 14, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2025-12-15': { week: 15, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 15' },
+  '2025-12-16': { week: 15, semester: 'fall', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2025-12-17': { week: 15, semester: 'fall', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2025-12-18': { week: 15, semester: 'fall', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2025-12-19': { week: 15, semester: 'fall', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2025-12-22': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-23': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-24': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-25': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-26': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-29': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-30': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2025-12-31': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+
+  // January 2026 - Holiday and return to fall semester
+  '2026-01-01': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-01-02': { week: null, semester: null, isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2026-01-03': { week: null, semester: null, isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2026-01-06': { week: 16, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-01-07': { week: 16, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-01-08': { week: 16, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-01-09': { week: 16, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-01-10': { week: 16, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-01-13': { week: 17, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-01-14': { week: 17, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-01-15': { week: 17, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-01-16': { week: 17, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-01-17': { week: 17, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-01-20': { week: 18, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-01-21': { week: 18, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-01-22': { week: 18, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-01-23': { week: 18, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-01-24': { week: 18, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-01-27': { week: 19, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-01-28': { week: 19, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-01-29': { week: 19, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-01-30': { week: 19, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-01-31': { week: 19, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+
+  // February 2026 - End fall, start spring semester
+  '2026-02-02': { week: 20, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-02-03': { week: 20, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-02-04': { week: 20, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-02-05': { week: 20, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-02-06': { week: 20, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-02-09': { week: 1, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 1' }, // S2
+  '2026-02-10': { week: 1, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-02-11': { week: 1, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-02-12': { week: 1, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-02-13': { week: 1, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-02-16': { week: 2, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-02-17': { week: 2, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-02-18': { week: 2, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-02-19': { week: 2, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-02-20': { week: 2, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-02-23': { week: 3, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-02-24': { week: 3, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-02-25': { week: 3, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-02-26': { week: 3, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-02-27': { week: 3, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+
+  // March 2026 - Spring semester continues
+  '2026-03-02': { week: 4, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-03-03': { week: 4, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-03-04': { week: 4, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-03-05': { week: 4, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-03-06': { week: 4, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-03-09': { week: 5, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-03-10': { week: 5, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-03-11': { week: 5, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-03-12': { week: 5, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-03-13': { week: 5, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-03-16': { week: 6, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2026-03-17': { week: 6, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2026-03-18': { week: 6, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2026-03-19': { week: 6, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2026-03-20': { week: 6, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 6' },
+  '2026-03-23': { week: 7, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2026-03-24': { week: 7, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2026-03-25': { week: 7, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2026-03-26': { week: 7, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2026-03-27': { week: 7, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 7' },
+  '2026-03-30': { week: 8, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2026-03-31': { week: 8, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+
+  // April 2026 - Spring break and continued spring
+  '2026-04-01': { week: 8, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 8' },
+  '2026-04-02': { week: null, semester: null, isTeaching: false, status: 'studiedag', displayText: 'Geen aanbod' },
+  '2026-04-03': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-04-06': { week: 9, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2026-04-07': { week: 9, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2026-04-08': { week: 9, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2026-04-09': { week: 9, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 9' },
+  '2026-04-10': { week: 9, semester: 'spring', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2026-04-13': { week: 10, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2026-04-14': { week: 10, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2026-04-15': { week: 10, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2026-04-16': { week: 10, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2026-04-17': { week: 10, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 10' },
+  '2026-04-20': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-21': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-22': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-23': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-24': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-27': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-04-28': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-29': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+  '2026-04-30': { week: 11, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 11' },
+
+  // May 2026 - Spring semester continues
+  '2026-05-01': { week: 12, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2026-05-04': { week: 12, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2026-05-05': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-05-06': { week: 12, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2026-05-07': { week: 12, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2026-05-08': { week: 12, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 12' },
+  '2026-05-11': { week: 13, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2026-05-12': { week: 13, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2026-05-13': { week: 13, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2026-05-14': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-05-15': { week: 13, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 13' },
+  '2026-05-18': { week: 14, semester: 'spring', isTeaching: false, status: 'geen-aanbod', displayText: 'Geen aanbod' },
+  '2026-05-19': { week: 14, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2026-05-20': { week: 14, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2026-05-21': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-05-22': { week: 14, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 14' },
+  '2026-05-25': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-05-26': { week: 15, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 15' },
+  '2026-05-27': { week: 15, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 15' },
+  '2026-05-28': { week: 15, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 15' },
+  '2026-05-29': { week: 15, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 15' },
+
+  // June 2026 - End of spring semester
+  '2026-06-01': { week: 16, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-06-02': { week: 16, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-06-03': { week: 16, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-06-04': { week: 16, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-06-05': { week: 16, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 16' },
+  '2026-06-08': { week: 17, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-06-09': { week: 17, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-06-10': { week: 17, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-06-11': { week: 17, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-06-12': { week: 17, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 17' },
+  '2026-06-15': { week: 18, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-06-16': { week: 18, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-06-17': { week: 18, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-06-18': { week: 18, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-06-19': { week: 18, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 18' },
+  '2026-06-22': { week: 19, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-06-23': { week: 19, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-06-24': { week: 19, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-06-25': { week: 19, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-06-26': { week: 19, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 19' },
+  '2026-06-29': { week: 20, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-06-30': { week: 20, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+
+  // July 2026 - Summer break
+  '2026-07-01': { week: 20, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-07-02': { week: 20, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-07-03': { week: 20, semester: 'spring', isTeaching: true, status: 'teaching', displayText: 'week 20' },
+  '2026-07-06': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-07': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-08': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-09': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-10': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-13': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-14': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-15': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-16': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-17': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-20': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-21': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-22': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-23': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-24': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-27': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-28': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-29': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-30': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-07-31': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+
+  // August 2026 - Summer break continues
+  '2026-08-03': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-04': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-05': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-06': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-07': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-10': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-11': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-12': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-13': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-14': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-17': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-18': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-19': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-20': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-21': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-24': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-25': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-26': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-27': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-28': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+  '2026-08-31': { week: null, semester: null, isTeaching: false, status: 'holiday', displayText: 'Geen aanbod' },
+
+  // September 2026 - New academic year begins (next year's S1)
+  '2026-09-01': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-09-02': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-09-03': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-09-04': { week: 1, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 1' },
+  '2026-09-07': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-09-08': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-09-09': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-09-10': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-09-11': { week: 2, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 2' },
+  '2026-09-14': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-09-15': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-09-16': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-09-17': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-09-18': { week: 3, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 3' },
+  '2026-09-21': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-09-22': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-09-23': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-09-24': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-09-25': { week: 4, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 4' },
+  '2026-09-28': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-09-29': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+  '2026-09-30': { week: 5, semester: 'fall', isTeaching: true, status: 'teaching', displayText: 'week 5' },
+};
+
+export function getLessonWeekInfo(date: Date): LessonWeekInfo {
+  const dateStr = date.toISOString().split('T')[0];
+  const info = lessonWeekMappings[dateStr];
+  
+  if (info) {
+    return info;
+  }
+  
+  // Default for unmapped dates (assume normal teaching day)
+  return {
+    week: null,
+    semester: null,
+    isTeaching: true,
+    status: 'teaching',
+    displayText: ''
+  };
+}
+
+export function getWorkshopWeekTag(date: Date): string {
+  const info = getLessonWeekInfo(date);
+  return info.displayText || '';
+}
+
+export function isTeachingDay(date: Date): boolean {
+  const info = getLessonWeekInfo(date);
+  return info.isTeaching;
+}
+
+export function getWeekStatus(date: Date): 'teaching' | 'geen-aanbod' | 'studiedag' | 'holiday' {
+  const info = getLessonWeekInfo(date);
+  return info.status;
+}
