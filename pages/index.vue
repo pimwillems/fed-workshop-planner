@@ -340,7 +340,12 @@ const calendarDays = computed(() => {
   // Add current month days
   for (let day = 1; day <= lastDay.getDate(); day++) {
     const date = new Date(year, month, day)
-    const dateString = date.toISOString().split('T')[0]
+    
+    const localYear = date.getFullYear();
+    const localMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+    const localDay = date.getDate().toString().padStart(2, '0');
+    const dateString = `${localYear}-${localMonth}-${localDay}`;
+
     const dayWorkshops = filteredWorkshops.value.filter(w => w.date === dateString)
     const lessonWeekInfo = getLessonWeekInfo(date)
     
