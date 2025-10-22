@@ -76,20 +76,19 @@
     </div>
 
     <div v-else>
-      <div v-if="filteredWorkshops.length === 0" style="text-align: center; padding: 3rem;">
-        <p style="color: var(--text-secondary); font-size: 1.1rem;">
-          No workshops found matching your criteria.
-        </p>
-        <button @click="clearFilters" class="btn btn-primary" style="margin-top: 1rem;">
-          View All Workshops
-        </button>
-      </div>
-
       <!-- Workshop Tiles View -->
-      <div v-else-if="currentView === 'tiles'">
-        <div class="grid grid-2">
+      <div v-if="currentView === 'tiles'">
+        <div v-if="futureWorkshops.length === 0" style="text-align: center; padding: 3rem;">
+          <p style="color: var(--text-secondary); font-size: 1.1rem;">
+            No upcoming workshops found matching your criteria.
+          </p>
+          <button @click="clearFilters" class="btn btn-primary" style="margin-top: 1rem;">
+            View All Workshops
+          </button>
+        </div>
+        <div v-else class="grid grid-2">
           <div 
-            v-for="workshop in filteredWorkshops" 
+            v-for="workshop in futureWorkshops" 
             :key="workshop.id" 
             class="card"
             :class="`subject-${workshop.subject.toLowerCase()}`"
@@ -152,7 +151,15 @@
 
       <!-- Calendar View -->
       <div v-else-if="currentView === 'calendar'">
-        <div style="background: var(--bg-secondary); border-radius: 0.75rem; padding: 1.5rem; overflow-x: auto;">
+        <div v-if="filteredWorkshops.length === 0" style="text-align: center; padding: 3rem;">
+          <p style="color: var(--text-secondary); font-size: 1.1rem;">
+            No workshops found matching your criteria.
+          </p>
+          <button @click="clearFilters" class="btn btn-primary" style="margin-top: 1rem;">
+            View All Workshops
+          </button>
+        </div>
+        <div v-else style="background: var(--bg-secondary); border-radius: 0.75rem; padding: 1.5rem; overflow-x: auto;">
           <!-- Calendar Header -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
             <button @click="changeMonth(-1)" class="btn" style="padding: 0.5rem;">
@@ -192,7 +199,21 @@
             >
               <!-- Day number and lesson week info -->
               <div style="margin-bottom: 0.5rem;">
-                <div style="font-weight: 600; color: var(--text-primary); font-size: 0.875rem;">
+                <div 
+                  :style="{
+                    fontWeight: 600,
+                    color: day.isToday ? 'white' : 'var(--text-primary)',
+                    fontSize: '0.875rem',
+                    backgroundColor: day.isToday ? 'var(--color-po-dark)' : 'transparent',
+                    borderRadius: '50%',
+                    width: '28px',
+                    height: '28px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.25rem'
+                  }"
+                >
                   {{ day.dayNumber }}
                 </div>
                 <div v-if="day.lessonWeekInfo.displayText" style="font-size: 0.7rem; color: var(--text-muted); font-weight: 500;">
@@ -241,6 +262,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted, watch } from 'vue'
 import type { Subject } from '~/types'
 import { useWorkshopsStore } from '~/store/workshops'
 import { sanitizeText } from '~/utils/sanitization'
@@ -253,7 +275,26 @@ const selectedDate = ref('')
 const currentView = ref('tiles') // 'tiles' or 'calendar'
 const currentCalendarMonth = ref(new Date())
 
+// Watch for view changes to reset calendar to current month
+watch(currentView, (newView) => {
+  if (newView === 'calendar') {
+    currentCalendarMonth.value = new Date();
+  }
+});
+
 const filteredWorkshops = computed(() => workshopsStore.filteredWorkshops)
+
+// New computed property to only show workshops from today onwards for the tile view
+const futureWorkshops = computed(() => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Normalize to the start of the current day
+
+  return filteredWorkshops.value.filter(workshop => {
+    // Append T00:00:00 to parse the date string in the local timezone
+    const workshopDate = new Date(`${workshop.date}T00:00:00`);
+    return workshopDate >= today;
+  });
+});
 
 const currentMonthYear = computed(() => {
   return currentCalendarMonth.value.toLocaleDateString('en-US', {
@@ -266,6 +307,11 @@ const calendarDays = computed(() => {
   const year = currentCalendarMonth.value.getFullYear()
   const month = currentCalendarMonth.value.getMonth()
   
+  // Get today's date, normalized, to check for the current day
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const todayTime = today.getTime()
+
   // Get first day of the month
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
@@ -277,7 +323,7 @@ const calendarDays = computed(() => {
   const days = []
   
   // Add previous month days
-  const prevMonth = new Date(year, month - 1, 0)
+  const prevMonth = new Date(year, month, 0)
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
     const date = new Date(year, month - 1, prevMonth.getDate() - i)
     const lessonWeekInfo = getLessonWeekInfo(date)
@@ -286,7 +332,8 @@ const calendarDays = computed(() => {
       dayNumber: date.getDate(),
       isCurrentMonth: false,
       workshops: [],
-      lessonWeekInfo
+      lessonWeekInfo,
+      isToday: date.getTime() === todayTime
     })
   }
   
@@ -302,7 +349,8 @@ const calendarDays = computed(() => {
       dayNumber: day,
       isCurrentMonth: true,
       workshops: dayWorkshops,
-      lessonWeekInfo
+      lessonWeekInfo,
+      isToday: date.getTime() === todayTime
     })
   }
   
@@ -316,7 +364,8 @@ const calendarDays = computed(() => {
       dayNumber: day,
       isCurrentMonth: false,
       workshops: [],
-      lessonWeekInfo
+      lessonWeekInfo,
+      isToday: date.getTime() === todayTime
     })
   }
   
@@ -342,7 +391,7 @@ const loadWorkshops = async () => {
 
 const changeMonth = (direction: number) => {
   const newDate = new Date(currentCalendarMonth.value)
-  newDate.setMonth(newDate.getMonth() + direction)
+  newDate.setMonth(newDate.getMonth() + direction, 1) // Set to day 1 to avoid month skipping issues
   currentCalendarMonth.value = newDate
 }
 
@@ -371,7 +420,8 @@ const getSubjectTextColor = (subject: Subject): string => {
 }
 
 const formatDate = (dateString: string): string => {
-  const date = new Date(dateString)
+  // Use a T00:00:00 suffix to ensure the date is parsed in the local timezone, not UTC
+  const date = new Date(`${dateString}T00:00:00`)
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',

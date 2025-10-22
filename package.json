@@ -18,6 +18,7 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@nuxtjs/color-mode": "^3.5.1",
     "@pinia/nuxt": "^0.5.5",
     "@prisma/client": "^6.1.0",
