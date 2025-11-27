@@ -175,8 +175,8 @@
 
           <!-- Days of week header -->
           <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-bottom: 1px;">
-            <div 
-              v-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']" 
+            <div
+              v-for="day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']"
               :key="day"
               style="background: var(--bg-primary); padding: 0.75rem; text-align: center; font-weight: 600; font-size: 0.875rem; color: var(--text-muted);"
             >
@@ -315,13 +315,14 @@ const calendarDays = computed(() => {
   // Get first day of the month
   const firstDay = new Date(year, month, 1)
   const lastDay = new Date(year, month + 1, 0)
-  
-  // Get the day of week for the first day (0 = Sunday)
-  const startDayOfWeek = firstDay.getDay()
-  
+
+  // Get the day of week for the first day (0 = Monday, 6 = Sunday)
+  // getDay() returns 0 = Sunday, so we convert: (getDay() + 6) % 7
+  const startDayOfWeek = (firstDay.getDay() + 6) % 7
+
   // Get days to show (including previous/next month days)
   const days = []
-  
+
   // Add previous month days
   const prevMonth = new Date(year, month, 0)
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
