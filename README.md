@@ -37,10 +37,13 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- PostgreSQL database (Coolify on Hetzner VPS for production deployment)
+- Node.js 18+
+- PostgreSQL database (Docker, local installation, or cloud service)
+- Docker (recommended for local development)
 
-### Installation
+### Local Development Setup
+
+#### Option A: Using Docker PostgreSQL (Recommended)
 
 1. **Clone the repository**
    ```bash
@@ -53,31 +56,72 @@ A modern, accessible workshop management system built with Nuxt 3, allowing teac
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Start PostgreSQL with Docker**
    ```bash
-   cp .env.example .env
-   ```
-   
-   Update `.env` with your database credentials:
-   ```env
-   DATABASE_URL="postgresql://username:password@host:port/database"
-   DIRECT_URL="postgresql://username:password@host:port/database"
-   JWT_SECRET="your-secure-secret-key"
+   docker run --name postgres17 -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:17-alpine
    ```
 
-4. **Set up the database**
+4. **Set up environment variables**
+
+   Create a `.env.local` file (or `.env`) in the project root:
+   ```env
+   DATABASE_URL="postgresql://postgres:password@localhost:5432/demo_workshops"
+   DIRECT_URL="postgresql://postgres:password@localhost:5432/demo_workshops"
+   JWT_SECRET="local-dev-secret-key-do-not-use-in-production"
+   ```
+
+5. **Set up the database schema**
    ```bash
    npm run db:push
-   npm run db:seed
    ```
 
-5. **Start development server**
+6. **Seed the database with test data**
+
+   For a quick start with admin user and 3 sample workshops:
+   ```bash
+   node scripts/seed-local.mjs
+   ```
+
+   This creates:
+   - **Admin user** - Email: `admin`, Password: `admin`
+   - **3 workshops** in December 2025 (DEV, UX, and PO subjects)
+
+7. **Start development server**
    ```bash
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to `http://localhost:3000`
+8. **Open your browser**
+
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+   Login at [http://localhost:3000/login](http://localhost:3000/login) with:
+   - **Email:** `admin`
+   - **Password:** `admin`
+
+#### Option B: Using Existing PostgreSQL Installation
+
+1. **Clone and install** (same as Option A steps 1-2)
+
+2. **Create database**
+   ```bash
+   createdb demo_workshops
+   ```
+
+3. **Set up environment variables**
+
+   Create a `.env.local` file with your PostgreSQL credentials:
+   ```env
+   DATABASE_URL="postgresql://your_user:your_password@localhost:5432/demo_workshops"
+   DIRECT_URL="postgresql://your_user:your_password@localhost:5432/demo_workshops"
+   JWT_SECRET="local-dev-secret-key-do-not-use-in-production"
+   ```
+
+4. **Continue with steps 5-8 from Option A**
+
+### Production Setup
+
+For production deployment (Coolify, Render, Vercel, etc.), see the [Deployment](#-deployment) section below.
 
 ## 🏗️ Technology Stack
 
