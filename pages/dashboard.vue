@@ -174,8 +174,16 @@
           {{ sanitizeText(workshop.description) }}
         </p>
 
-        <div style="color: var(--text-muted); font-size: 0.875rem;">
-          📅 {{ formatDate(workshop.date) }}
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <div style="color: var(--text-muted); font-size: 0.875rem;">
+            📅 {{ formatDate(workshop.date) }}
+          </div>
+          <AddToCalendar
+            :title="sanitizeText(workshop.title)"
+            :description="sanitizeText(workshop.description)"
+            :startDate="workshop.date"
+            location="FED Workshop"
+          />
         </div>
       </div>
     </div>
