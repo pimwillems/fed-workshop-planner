@@ -5,9 +5,14 @@
         <h1 style="font-size: 2rem; font-weight: 700; color: var(--text-primary); margin: 0;">
           FED Teacher Dashboard
         </h1>
-        <NuxtLink to="/change-password" class="btn btn-secondary" style="font-size: 0.875rem;">
-          Change Password
-        </NuxtLink>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <NuxtLink v-if="authStore.isAdmin" to="/admin/users" class="btn btn-primary" style="font-size: 0.875rem;">
+            👥 Manage Users
+          </NuxtLink>
+          <NuxtLink to="/change-password" class="btn btn-secondary" style="font-size: 0.875rem;">
+            Change Password
+          </NuxtLink>
+        </div>
       </div>
       <p style="color: var(--text-secondary);">
         Welcome back, {{ authStore.user?.name }}! Manage your FED workshops here.
